@@ -1,0 +1,41 @@
+@import "../../Variables.scss";
+
+ul {
+  height: 100%;
+  width: 100%;
+  background-color: #1e1e1e;
+  color: #fff;
+
+  div {
+    display: flex;
+    align-items: center;
+    .coin-name {
+      margin-left: 0.4rem;
+      font-size: 1rem;
+      span {
+        color: grey;
+      }
+    }
+
+    .coin-change {
+        margin-left: .8rem;
+      &.negative {
+        color: red;
+      }
+      &.positive {
+        color: green;
+      }
+    }
+  }
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid black;
+    margin: 0.3rem 0;
+    padding: 1rem .8rem;
+    img {
+      width: 50px;
+    }
+  }
+}
