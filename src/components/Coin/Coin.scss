@@ -9,33 +9,44 @@ ul {
   div {
     display: flex;
     align-items: center;
+
+    @media(max-width: 350px) {
+      img {
+        display: none;
+      }
+    }
     .coin-name {
       margin-left: 0.4rem;
       font-size: 1rem;
-      span {
-        color: grey;
+      @media(max-width: 700px) {
+        display: none;
       }
     }
-
-    .coin-change {
-        margin-left: .8rem;
-      &.negative {
-        color: red;
-      }
-      &.positive {
-        color: green;
-      }
+    .coin-symbol {
+      margin-left: 0.7rem;
+      color: grey;
+      font-weight: bold;
     }
   }
-  li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2px solid black;
-    margin: 0.3rem 0;
-    padding: 1rem .8rem;
-    img {
-      width: 50px;
+
+  .coin-change {
+    margin-left: 0.8rem;
+    &.negative {
+      color: red;
     }
+    &.positive {
+      color: green;
+    }
+  }
+}
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid black;
+  margin: 0.3rem 0;
+  padding: 1rem 0.8rem;
+  img {
+    width: 50px;
   }
 }

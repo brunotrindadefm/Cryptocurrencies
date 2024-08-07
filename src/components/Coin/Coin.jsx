@@ -1,17 +1,31 @@
 import './Coin.scss'
 
+import { useState, useEffect } from 'react'
+
 const Coin = ({ crypto }) => {
+    const [decimalPlaces, setDecimalPlaces] = useState({ min: 2, max: 2 })
 
-    console.log(crypto)
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth <= 300) {
+                setDecimalPlaces({ min: 0, max: 1 }) 
+            } else {
+                setDecimalPlaces({ min: 2, max: 8}) // Mais casas decimais em telas maiores
+            }
+        }
 
+        handleResize() 
+        window.addEventListener('resize', handleResize)
+        return () => window.removeEventListener('resize', handleResize)
+    }, [])
 
     const formatCurrency = (amount) => {
         return new Intl.NumberFormat('en-US', {
             style: 'currency',
             currency: 'USD',
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 7
-        }).format(amount);
+            minimumFractionDigits: decimalPlaces.min,
+            maximumFractionDigits: decimalPlaces.max
+        }).format(amount)
     }
 
     return (
@@ -21,7 +35,8 @@ const Coin = ({ crypto }) => {
                     <li key={coin.id}>
                         <div>
                             <img src={coin.image} alt={coin.name} />
-                            <p className='coin-name'> {coin.name} <span> {coin.symbol.toUpperCase()} </span> </p>
+                            <p className='coin-name'> {coin.name}  </p>
+                            <p className='coin-symbol'> {coin.symbol.toUpperCase()} </p>
                         </div>
                         <div>
                             <p className="coin-price"> {formatCurrency(coin.current_price)} </p>
